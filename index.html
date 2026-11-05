@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Estimate air fryer temperature and cooking time from conventional or fan oven settings.">
+  <meta name="theme-color" content="#faf3e9">
+  <title>Fry | Oven to air fryer converter</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="fry.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Oven to air fryer converter</h1>
+    </header>
+
+    <div class="converter">
+      <form id="converter" class="card">
+        <fieldset>
+          <legend>Oven type</legend>
+          <div class="choices">
+            <label><input type="radio" name="oven" value="conventional" checked><span>Conventional</span></label>
+            <label><input type="radio" name="oven" value="fan"><span>Fan</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Food type</legend>
+          <div class="choices">
+            <label><input type="radio" name="food" value="fresh" checked><span>Fresh</span></label>
+            <label><input type="radio" name="food" value="frozen"><span>Frozen</span></label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="temperature">Oven temperature</label>
+          <select id="temperature" name="temperature">
+            <option value="240">240 °C</option>
+            <option value="230">230 °C</option>
+            <option value="220">220 °C</option>
+            <option value="210">210 °C</option>
+            <option value="200" selected>200 °C</option>
+            <option value="190">190 °C</option>
+            <option value="180">180 °C</option>
+            <option value="170">170 °C</option>
+            <option value="160">160 °C</option>
+            <option value="150">150 °C</option>
+            <option value="140">140 °C</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="minutes">Oven time</label>
+          <div class="number">
+            <input id="minutes" name="minutes" type="number" inputmode="numeric" min="1" max="600" step="1" required placeholder="20" aria-describedby="minutes-unit">
+            <span id="minutes-unit">min</span>
+          </div>
+        </div>
+        <button type="submit">Convert</button>
+        <noscript><p>Enable JavaScript to use the converter.</p></noscript>
+      </form>
+
+      <section class="card result" aria-labelledby="result-title">
+        <h2 id="result-title">Estimated air fryer settings</h2>
+        <div id="result" role="status" aria-atomic="true">
+          <p id="result-placeholder">Enter your oven settings to get an estimate.</p>
+          <div id="estimate" hidden>
+            <p id="air-temperature" class="reading"></p>
+            <p id="air-time" class="reading"></p>
+            <p id="check-time"></p>
+            <p id="packet-note" class="note" hidden>Use the packet’s air fryer instructions if available. This range is for an early check. Continue cooking until the food is cooked through.</p>
+          </div>
+        </div>
+        <details>
+          <summary>How we estimate</summary>
+          <div class="method">
+            <p><strong>Fresh:</strong> For a conventional oven, subtract 20°C. For a fan oven, keep the temperature as a starting assumption. Use 75–80% of the oven time in either case.</p>
+            <p><strong>Frozen:</strong> Enter the oven instructions for cooking that product from frozen. The range is an early checking window based on Instant Pot UK’s half-time rule for many frozen foods. Fry keeps the oven temperature and uses 50–55% of the oven time. Product-specific air fryer instructions take priority.</p>
+            <p>Fry rounds to whole minutes. Use the lower end to start checking and keep cooking until the food is cooked through. Follow your appliance instructions and check that it supports the suggested temperature.</p>
+            <p><a href="https://instantpot.co.uk/air-frying-101-how-to-convert-oven-cooking-times-to-your-air-fryer/">Instant Pot UK conversion guide</a><br>
+              <a href="https://www.food.gov.uk/safety-hygiene/cooking-your-food">Food Standards Agency cooking advice</a></p>
+          </div>
+        </details>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
